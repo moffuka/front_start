@@ -1,0 +1,183 @@
+/*********************************************************************************************************************
+*
+*                                               ASD FRAMEWORK
+*
+**********************************************************************************************************************/
+
+.asd-clear {
+    clear:both;
+    height: 0px;
+    font-size: 0px;
+}
+
+.asd-wrap {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    left: 0; top: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.asd-wrap-2 {
+    position: absolute;
+    display: block;
+    width: auto;
+    height: auto;
+    left: 0; right: 0; top: 0; bottom: 0;
+    margin: auto;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.asd-left {
+    float: left;
+}
+
+.asd-right {
+    float: right;
+}
+
+/****************************** IMAGE ******************************/
+
+.asd-img {
+    display: block;
+    width: auto;
+    height: auto;
+}
+
+.asd-img-fit {
+    position: absolute;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    left: 0; right: 0; top: 0; bottom: 0;
+    margin: auto;
+}
+
+.asd-img-width {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.asd-img-height {
+    display: block;
+    width: auto;
+    height: 100%;
+}
+
+.asd-img-crop-wrap {
+    display: block;
+    position: absolute;
+    left: -450%;
+    top: -450%;
+    width: 1000%;
+    height: 1000%;
+}
+
+.asd-img-crop {
+    display: block;
+    position: absolute;
+    min-width: 10%;
+    min-height: 10%;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.asd-bg-fit {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.asd-bg-crop {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+/******************************* TEXT ******************************/
+
+/* inline blocks */
+.asd-text-center {
+    white-space: nowrap;
+    text-align: center;
+}
+.asd-text-center:before {
+    position: relative;
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+.asd-text-center > * {
+    display: inline-block;
+    vertical-align: middle;
+    white-space: normal;
+    text-align: center;
+    font: inherit;
+    line-height: inherit;
+}
+
+/* tables */
+.asd-text-center-1 {
+    display: table;
+    width: 100%;
+    height: 100%;
+    font: inherit;
+    position: relative;
+}
+
+.asd-text-center-2 {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    font: inherit;
+    position: relative;
+}
+
+/***************************** POSITION ****************************/
+
+.asd-pos-center {
+    position: absolute;
+    display: block;
+    left: 0; top: 0; right: 0; bottom: 0;
+    margin: auto;
+    z-index: 0;
+}
+
+.asd-pos-top-center {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0; right: 0;
+    margin: 0 auto;
+    z-index: 0;
+}
+
+.asd-pos-bottom-center {
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 0; right: 0;
+    margin: 0 auto;
+    z-index: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

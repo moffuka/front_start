@@ -1,0 +1,158 @@
+<?php
+    if(isset($_SERVER['HTTPS'])){
+        $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
+    } else {
+        $protocol = 'http';
+    }
+    $URL = $protocol . "://" . $_SERVER['HTTP_HOST'];
+
+    if ($_SERVER['HTTP_HOST'] == 'site.loc') {
+        $fb_app_id = '1111111111111111';
+    } else {
+        $fb_app_id = '1111111111111111';
+    }
+?>
+<!DOCTYPE html>
+<html ng-app="main">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <meta property="og:url" content="<?= $URL ?>"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Site Title"/>
+    <meta property="og:description" content="Site Descr"/>
+    <meta property="og:image" content="<?= $URL ?>/img/socials/share.jpg"/>
+
+    <title>Site Title</title>
+    <meta name="description" content="Site Descr">
+
+    <script type="text/javascript">
+        var baseUrl = '<?= $URL ?>';
+
+        var fb_app_id = '<?= $fb_app_id ?>';
+    </script>
+
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script type="text/javascript" src="/js/primarily_load/dvlp.js"></script>
+
+    <link rel="stylesheet" href="/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="/css/media-desktop.css" type="text/css" />
+    <link rel="stylesheet" href="/css/media-mobile.css" type="text/css" />
+    <link rel="stylesheet" href="/css/media-tablet.css" type="text/css" />
+    <link rel="stylesheet" href="/css/media-phone.css" type="text/css" />
+</head>
+
+<body>
+    <!------------------------------------- PAGES -------------------------------------->
+    <div class="b-page_wrap asd-wrap">
+        <div class="b-page_wrap_in asd-wrap">
+            <div id="wrap-index" class="b-page asd-wrap" data-page="index" data-route="index" data-page-type="page" style="display: none;"></div>
+        </div>
+    </div>
+
+
+
+
+
+    <!------------------------------------- TEMPLATES -------------------------------------->
+    <div class="b-templates" style="position: absolute; left: -1000px; top: -1000px;">
+        <!------------------------------------- HEADER -------------------------------------->
+        <script id="header_template" type="text/template">
+            <div class="b-header asd-pos-top-center"></div>
+        </script>
+
+        <!------------------------------------- FOOTER -------------------------------------->
+        <script id="footer_template" type="text/template">
+            <div class="b-footer asd-pos-bottom-center"></div>
+        </script>
+    </div>
+
+
+
+
+
+    <!------------------------------------- SIDEBAR -------------------------------------->
+    <div class="b-sidebar asd-pos-center b-mobile_hidden">
+        <div class="b-sidebar_item b-button asd-bg-fit b-hover" data-route="index"></div>
+        <div class="b-sidebar_item b-button asd-bg-fit b-hover" data-route="fv"></div>
+        <div class="b-sidebar_item b-button asd-bg-fit b-hover" data-route="final_video"></div>
+        <div class="b-sidebar_item b-button asd-bg-fit b-hover" data-route="series/1"></div>
+        <div class="b-sidebar_item b-button asd-bg-fit b-hover" data-route="series/2"></div>
+        <div class="b-sidebar_item b-button asd-bg-fit b-hover" data-route="series/3"></div>
+        <div class="b-sidebar_item b-button asd-bg-fit b-hover" data-route="voting"></div>
+        <div class="b-sidebar_item b-button asd-bg-fit b-hover" data-route="learn_more"></div>
+    </div>
+
+
+
+
+
+    <!------------------------------------- MESSAGE POPUP -------------------------------------->
+    <div class="b-message_popup b-small_popup asd-wrap" style="display: none;">
+        <div class="b-popup_overlay asd-wrap"></div>
+        <div class="js-small_popup_close asd-wrap"></div>
+
+        <div class="b-message_popup_content b-small_popup_content asd-pos-center asd-bg-crop">
+            <div class="asd-text-center-1">
+                <div class="asd-text-center-2">
+                    <div class="b-message_popup_content_in b-small_popup_content_in"></div>
+                </div>
+            </div>
+            <div class="js-small_popup_close b-message_popup_close b-popup_close b-button b-hover asd-bg-fit"></div>
+        </div>
+    </div>
+
+
+
+
+    <!--------------------------------------- PRELOADER -------------------------------------->
+    <div id="wrap-preloader" class="b-preloader asd-wrap">
+        <div class="b-preloader_bg asd-wrap"></div>
+    </div>
+
+
+
+
+
+
+
+    <!--------------------------------------- MOBILE ROTATE --------------------------------->
+    <div class="b-mobile_rotate asd-wrap" style="display: none;">
+        <div class="b-mobile_rotate_bg asd-wrap asd-bg-crop"></div>
+
+        <div class="b-mobile_rotate_in asd-pos-center">
+            <div class="b-mobile_rotate_img icon-milk_label b-button asd-bg-fit"></div>
+            <div class="b-mobile_rotate_text">Поверните ваше устройство <br>вертикально</div>
+        </div>
+    </div>
+
+
+
+
+
+    <!--------------------------------------- SCRIPTS --------------------------------->
+    <script src="/js/libs/core/jquery-1.9.1.min.js"></script>
+    <script src="/js/min/libs.common.min.js"></script>
+    <script src="/js/libs/core/underscore.js"></script>
+    <script src="/js/libs/core/backbone-min.js"></script>
+    <script src="/js/libs/core/backbone.router.filter.min.js"></script>
+
+    <script src="/js/min/framework.min.js"></script>
+    <script src="/js/config/router.js"></script>
+
+    <script src="/js/min/models.min.js"></script>
+    <script src="/js/min/controllers.min.js"></script>
+
+
+
+
+
+
+    <!--------------------------------------- ANALYTICKS --------------------------------->
+</body>
+
+</html>

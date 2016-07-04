@@ -1,0 +1,22 @@
+/**********************************************************************************************************
+
+                                                TABLETS
+
+**********************************************************************************************************/
+.html-tablet {
+  /* common */
+  /* ---------- portrait ---------*/
+  /* ---------- landscape ---------*/
+}
+.html-tablet .b-tablet_only {
+  display: block;
+}
+.html-tablet .b-tablet_hidden {
+  display: none !important;
+}
+.html-tablet.html-portrait .b-tablet_portrait_hidden {
+  display: none !important;
+}
+.html-tablet.html-landscape .b-tablet_landscape_hidden {
+  display: none !important;
+}
