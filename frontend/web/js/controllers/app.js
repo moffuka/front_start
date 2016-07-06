@@ -13,10 +13,6 @@ var app = new (BaseController.extend({
         $(document).on('click', '.js-popup_close', function(e){ that.popupHide(); });
         $(document).on('click', '.js-small_popup_close', function(e){ that.hideSmallPopup(this); });
 
-        $(document).on('click', '.b-sidebar_item, .b-menu_item', function(e){ that.menuItemClick(this); });
-        $(document).on('click', '.b-hamburger', function(e){ that.menuShowClick(this); });
-        $(document).on('click', '.b-menu_close', function(e){ that.menuHideClick(this); });
-
         this.listenTo(router, 'change:now', this.pageChanged);
         this.listenTo(router, 'change:current_route', this.routeChanged);
         this.listenTo(preloaderModel, 'change:preloader_finished', this.appStart);
@@ -355,8 +351,6 @@ var app = new (BaseController.extend({
 
         if (
             page_changing ||
-            now == 'intro' ||
-            now == 'subscribe' ||
             $('.b-youtube_popup').isVisible()
         )
         {} else {
