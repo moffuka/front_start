@@ -169,7 +169,26 @@
     z-index: 0;
 }
 
-
+.asd-pos-left-top {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.asd-pos-right-top {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.asd-pos-left-bottom {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.asd-pos-right-bottom {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
 
 
 
