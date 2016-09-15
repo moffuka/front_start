@@ -234,9 +234,10 @@ function loadScript(url, cb_success, cb_error) {
 
 function getEndingByDigit(arr, digit) {
     digit = digit | 0;
+    digit = digit % 100;
 
     var digit_text = ((typeof arr[2] !== 'undefined') ? arr[2] : '');
-    if (digit < 10 || digit > 20) {
+    if (digit < 10 || 20 < digit) {
         if (digit % 10 == 2 || digit % 10 == 3 || digit % 10 == 4) {
             digit_text = ((typeof arr[1] !== 'undefined') ? arr[1] : '');
         } else if (digit % 10 == 1) {
