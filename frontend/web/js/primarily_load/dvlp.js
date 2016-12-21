@@ -195,18 +195,25 @@ function getRandomInt(min, max) {
 }
 
 function loadScript(url, cb_success, cb_error) {
+    cb_success = cb_success || function(){};
+    cb_error = cb_error || function(){};
+
     var head = document.getElementsByTagName('head')[0];
     var script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = url;
 
+    var deferred = $.Deferred();
+
     var t_out = 0;
 
     script.onload = function() {
-        if (typeof cb_success == 'function') { cb_success(); }
+        cb_success();
+        deferred.resolve();
     };
     script.onerror = function() {
-        if (typeof cb_error == 'function') { cb_error(); }
+        cb_error();
+        deferred.reject();
     };
 
     script.onreadystatechange = function() {
@@ -230,6 +237,8 @@ function loadScript(url, cb_success, cb_error) {
     };
 
     head.appendChild(script);
+
+    return deferred.promise();
 }
 
 function getEndingByDigit(arr, digit) {

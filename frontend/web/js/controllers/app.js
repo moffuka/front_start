@@ -37,10 +37,6 @@ var app = new (BaseController.extend({
             });
         }*/
 
-        // yt player
-        window.yt_player_loaded = false;
-        //that.loadVideoScripts();
-
         // начальные значения
         that.bgImgOnLoad();
         that.bgOnResize();
@@ -250,14 +246,6 @@ var app = new (BaseController.extend({
                 'page': location.href
             });
         }
-    },
-
-    loadVideoScripts: function() {
-        window.onYouTubeIframeAPIReady = function () {
-            window.yt_player_loaded = true;
-        };
-
-        loadScript('//www.youtube.com/iframe_api?enablejsapi=1&version=3', function (){});
     },
 
     popupHide: function() {
