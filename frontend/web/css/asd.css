@@ -190,6 +190,21 @@
     bottom: 0;
 }
 
+/*************************** INLINE BLOCKS ****************************/
+
+.asd-inline-wrap {
+    white-space: nowrap;
+    text-align: center;
+}
+
+.asd-inline-block {
+    display: inline-block;
+    vertical-align: middle;
+    white-space: normal;
+}
+
+
+
 
 
 
