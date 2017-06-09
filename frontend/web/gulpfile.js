@@ -153,16 +153,16 @@ gulp.task('sprites', function(){
     var spriteData = gulp.src(paths.source.sprites + '*').pipe(spritesmith({
         imgName: 'sprite.png',
         cssFormat: 'sass',
-        cssName: '_sprite.scss',
-        algorithm: 'binary-tree',
+        cssName: 'sprites.scss',
+        algorithm: 'diagonal',
         padding: 10,
         cssTemplate: 'scss.template.mustache',
         cssVarMap: function(sprite){
-            sprite.name = 's-' + sprite.name
+            sprite.name = 'icon-' + sprite.name
         }
     }));
     spriteData.img.pipe(gulp.dest(paths.build.sprites));
-    spriteData.css.pipe(gulp.dest(paths.source.sass));
+    spriteData.css.pipe(gulp.dest(paths.source.sass + 'base/'));
 });
 
 

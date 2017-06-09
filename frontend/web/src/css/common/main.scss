@@ -192,6 +192,13 @@ a:hover { text-decoration: none; }
 
 
 
+.icon-base { background-repeat: no-repeat; background-image: url(spriteImage($icon-soc_fb)); background-size: spriteBgSize($icon-soc_fb); }
+.icon-soc_fb { width: spriteWidth($icon-soc_fb); height: spriteHeight($icon-soc_fb); background-position: spriteBgPosition($icon-soc_fb); }
+.icon-soc_vk { width: spriteWidth($icon-soc_vk); height: spriteHeight($icon-soc_vk); background-position: spriteBgPosition($icon-soc_vk); }
+.icon-soc_ok { width: spriteWidth($icon-soc_ok); height: spriteHeight($icon-soc_ok); background-position: spriteBgPosition($icon-soc_ok); }
+
+
+
 
 /************************************************ HEADER / FOOTER *************************************************/
 

@@ -3,8 +3,14 @@
 @import "base/asd";
 @import "base/fonts";
 
+// mixins
+@import "base/functions";
+
 // sprites variables
-@import "_sprite";
+@import "base/sprites";
+
+
+
 
 // common
 @import "common/main";

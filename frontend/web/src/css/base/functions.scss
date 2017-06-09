@@ -1,0 +1,40 @@
+/************* em to px ******************/
+
+$browser-context: 10;
+
+@function em($pixels, $context: $browser-context) {
+    @if (unitless($pixels)) {
+        $pixels: $pixels * 1px;
+    }
+
+    @if (unitless($context)) {
+        $context: $context * 1px;
+    }
+
+    @return $pixels / $context * 1em;
+}
+
+
+
+
+
+/**************** sprites ****************/
+@function spriteWidth($sprite_list) {
+    @return em(nth($sprite_list, 5));
+}
+
+@function spriteHeight($sprite_list) {
+    @return em(nth($sprite_list, 6));
+}
+
+@function spriteBgPosition($sprite_list) {
+    @return em(nth($sprite_list, 3)) em(nth($sprite_list, 4));
+}
+
+@function spriteBgSize($sprite_list) {
+    @return em(nth($sprite_list, 7)) auto;
+}
+
+@function spriteImage($sprite_list) {
+    @return '../img/common/' + nth($sprite_list, 9);
+}
