@@ -2,10 +2,6 @@
 					        MAIN STYLE
 ======================================================================== */
 
-@import url("reset.css");
-@import url("fonts.css");
-@import url("asd.css");
-
 html, body { position: relative; width: 100%; height: 100%; overflow: hidden; }
 
 input, textarea { color: #000000; outline: none; font-family: Arial, sans-serif; font-weight: normal; }
@@ -48,7 +44,7 @@ a:hover { text-decoration: none; }
 .b-hover { cursor: pointer; }
 
 /* hover slides */
-.b-hover_slides {  }
+.b-hover_slides { color: #000000; }
 .b-hover_slide {  }
 .b-hover_slide_1 {  }
 .b-hover_slide_2 {  }

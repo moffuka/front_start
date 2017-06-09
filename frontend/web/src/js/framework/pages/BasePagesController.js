@@ -42,7 +42,7 @@ var BasePagesController = BaseController.extend({
         if (that._template == '') {
             $.ajax({
                 type: 'GET',
-                url: '/js/views/' + filename + '.html',
+                url: '/views/' + filename + '.html',
                 cache: false,
                 timeout: 10000,
                 success: function (text) {

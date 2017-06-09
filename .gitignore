@@ -33,3 +33,4 @@ composer.lock
 
 # node modules
 node_modules
+/frontend/web/node_modules
