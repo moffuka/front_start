@@ -54,9 +54,7 @@ var preloaderModel = new (BaseModel.extend({
                 // заполняем массив
                 that.set('images', []);
                 for (var i = 0; i < data.length; i++) {
-                    if (data[i].filetype !== 'mp4' && data[i].filetype !== 'webm') {
-                        that.get('images').push(data[i].location.replace('frontend/web/', ''));
-                    }
+                    that.get('images').push(data[i].replace('frontend/web/', ''));
                 }
 
                 // события
@@ -112,9 +110,7 @@ var preloaderModel = new (BaseModel.extend({
                 // заполняем массив
                 that.set('deferred_images', []);
                 for (var i = 0; i < data.length; i++) {
-                    if (data[i].filetype !== 'xml' && data[i].filetype !== 'mp4' && data[i].filetype !== 'webm') {
-                        that.get('deferred_images').push(data[i].location.replace('frontend/web/', ''));
-                    }
+                    that.get('deferred_images').push(data[i].replace('frontend/web/', ''));
                 }
 
                 // события

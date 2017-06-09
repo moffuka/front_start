@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     svgstore = require('gulp-svgstore'),
     svgmin = require('gulp-svgmin'),
     browserSync = require('browser-sync'),
+    filelist = require('gulp-filelist'),
     fileincluder = require('gulp-file-includer');
 
 var paths = {
@@ -17,7 +18,7 @@ var paths = {
         js: 'src/js/',
         concat: 'src/js/**/*.js',
         html: 'src/html/',
-        svg: 'src/svg/*.svg'
+        svg: 'src/svg/*.svg',
     },
     sourceConcatJS: [
         'src/js/libs/jquery/*.js',
@@ -29,12 +30,25 @@ var paths = {
         'src/js/models/**/*.js',
         'src/js/controllers/**/*.js',
     ],
+    imagesDesktop: [
+        'img/common/**/*.*',
+        'img/desktop/**/*.*',
+    ],
+    imagesMobile: [
+        'img/common/**/*.*',
+        'img/mobile/**/*.*',
+    ],
+    imagesDeferred: [
+        'img/deferred/**/*.*',
+    ],
     build: {
         css: 'css/',
         sprites: 'img/common/',
         js: 'js/',
         html: '',
-        spriteSVG: 'img/common/svg-sprite'
+        spriteSVG: 'img/common/svg-sprite',
+        json: 'json/',
+        images: 'img/'
     },
     bs_reload: {
         html: "*.html",
@@ -49,6 +63,9 @@ gulp.task('default', [
     'sprites',
     'sass',
     'fileincluder',
+    'imageslist_desktop',
+    'imageslist_mobile',
+    'imageslist_deferred',
     'svgstore',
     'concatJS',
     'compressJS',
@@ -66,6 +83,8 @@ gulp.task('watch', function () {
 
     gulp.watch(paths.source.sprites + '*', ['sprites']);
     gulp.watch(paths.source.svg, ['svgstore']);
+
+    gulp.watch(paths.build.images + '**/*.*', ['imageslist_desktop', 'imageslist_mobile', 'imageslist_deferred']);
 
     gulp.watch(paths.source.html + '*.html', ['fileincluder']);
 
@@ -130,7 +149,7 @@ gulp.task('svgstore', function () {
         .pipe(gulp.dest(paths.build.sprites));
 });
 
-gulp.task('sprites', function () {
+gulp.task('sprites', function(){
     var spriteData = gulp.src(paths.source.sprites + '*').pipe(spritesmith({
         imgName: 'sprite.png',
         cssFormat: 'sass',
@@ -138,7 +157,7 @@ gulp.task('sprites', function () {
         algorithm: 'binary-tree',
         padding: 10,
         cssTemplate: 'scss.template.mustache',
-        cssVarMap: function (sprite) {
+        cssVarMap: function(sprite){
             sprite.name = 's-' + sprite.name
         }
     }));
@@ -148,20 +167,46 @@ gulp.task('sprites', function () {
 
 
 
+
+/************** IMAGES LIST *************/
+
+gulp.task('imageslist_desktop', function(){
+    return gulp
+        .src(paths.imagesDesktop)
+        .pipe(filelist('img_desktop.json'))
+        .pipe(gulp.dest(paths.build.json));
+});
+
+gulp.task('imageslist_mobile', function(){
+    return gulp
+        .src(paths.imagesMobile)
+        .pipe(filelist('img_mobile.json'))
+        .pipe(gulp.dest(paths.build.json));
+});
+
+gulp.task('imageslist_deferred', function(){
+    return gulp
+        .src(paths.imagesDeferred)
+        .pipe(filelist('img_deferred.json'))
+        .pipe(gulp.dest(paths.build.json));
+});
+
+
+
 /************************************ SCRIPTS *******************************************/
 
 
 
-gulp.task('concatJS', function () {
+gulp.task('concatJS', function(){
     gulp.src(paths.sourceConcatJS)
         .pipe(concat('all.min.js'))
-       // .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest(paths.build.js))
 });
 
-gulp.task('compressJS', function () {
+gulp.task('compressJS', function(){
     return gulp.src(paths.source.js + '*.js')
-       // .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest(paths.build.js));
 });
 
