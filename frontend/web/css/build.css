@@ -241,29 +241,45 @@ sup {
 }*/
 /************* em to px ******************/
 /**************** sprites ****************/
-.icon-soc_fb {
-  width: 6.9em;
-  height: 10.7em;
+.icon-gallery_arrow {
+  width: 4.4em;
+  height: 5.5em;
   background-position: 0em 0em;
   background-repeat: no-repeat;
   background-image: url("../img/common/sprite.png");
-  background-size: 28.6em auto; }
+  background-size: 39.4em auto; }
+
+.icon-gallery_arrow_right {
+  width: 4.4em;
+  height: 5.5em;
+  background-position: -5.4em -6.5em;
+  background-repeat: no-repeat;
+  background-image: url("../img/common/sprite.png");
+  background-size: 39.4em auto; }
+
+.icon-soc_fb {
+  width: 6.9em;
+  height: 10.7em;
+  background-position: -10.8em -13em;
+  background-repeat: no-repeat;
+  background-image: url("../img/common/sprite.png");
+  background-size: 39.4em auto; }
 
 .icon-soc_ok {
   width: 7.5em;
   height: 10.7em;
-  background-position: -7.9em -11.7em;
+  background-position: -18.7em -24.7em;
   background-repeat: no-repeat;
   background-image: url("../img/common/sprite.png");
-  background-size: 28.6em auto; }
+  background-size: 39.4em auto; }
 
 .icon-soc_vk {
   width: 12.2em;
   height: 10.7em;
-  background-position: -16.4em -23.4em;
+  background-position: -27.2em -36.4em;
   background-repeat: no-repeat;
   background-image: url("../img/common/sprite.png");
-  background-size: 28.6em auto; }
+  background-size: 39.4em auto; }
 
 /* =====================================================================
 					        MAIN STYLE

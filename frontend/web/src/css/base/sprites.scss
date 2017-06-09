@@ -1,4 +1,22 @@
-	$icon-soc_fb: 0px, 0px, 0px, 0px, 69px, 107px, 286px, 341px, 'sprite.png';
+	$icon-gallery_arrow: 0px, 0px, 0px, 0px, 44px, 55px, 394px, 471px, 'sprite.png';
+    .icon-gallery_arrow {
+        width: spriteWidth($icon-gallery_arrow);
+        height: spriteHeight($icon-gallery_arrow);
+        background-position: spriteBgPosition($icon-gallery_arrow);
+        background-repeat: no-repeat;
+        background-image: url(spriteImage($icon-gallery_arrow));
+        background-size: spriteBgSize($icon-gallery_arrow);
+    }
+	$icon-gallery_arrow_right: 54px, 65px, -54px, -65px, 44px, 55px, 394px, 471px, 'sprite.png';
+    .icon-gallery_arrow_right {
+        width: spriteWidth($icon-gallery_arrow_right);
+        height: spriteHeight($icon-gallery_arrow_right);
+        background-position: spriteBgPosition($icon-gallery_arrow_right);
+        background-repeat: no-repeat;
+        background-image: url(spriteImage($icon-gallery_arrow_right));
+        background-size: spriteBgSize($icon-gallery_arrow_right);
+    }
+	$icon-soc_fb: 108px, 130px, -108px, -130px, 69px, 107px, 394px, 471px, 'sprite.png';
     .icon-soc_fb {
         width: spriteWidth($icon-soc_fb);
         height: spriteHeight($icon-soc_fb);
@@ -7,7 +25,7 @@
         background-image: url(spriteImage($icon-soc_fb));
         background-size: spriteBgSize($icon-soc_fb);
     }
-	$icon-soc_ok: 79px, 117px, -79px, -117px, 75px, 107px, 286px, 341px, 'sprite.png';
+	$icon-soc_ok: 187px, 247px, -187px, -247px, 75px, 107px, 394px, 471px, 'sprite.png';
     .icon-soc_ok {
         width: spriteWidth($icon-soc_ok);
         height: spriteHeight($icon-soc_ok);
@@ -16,7 +34,7 @@
         background-image: url(spriteImage($icon-soc_ok));
         background-size: spriteBgSize($icon-soc_ok);
     }
-	$icon-soc_vk: 164px, 234px, -164px, -234px, 122px, 107px, 286px, 341px, 'sprite.png';
+	$icon-soc_vk: 272px, 364px, -272px, -364px, 122px, 107px, 394px, 471px, 'sprite.png';
     .icon-soc_vk {
         width: spriteWidth($icon-soc_vk);
         height: spriteHeight($icon-soc_vk);
