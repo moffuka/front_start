@@ -241,6 +241,30 @@ sup {
 }*/
 /************* em to px ******************/
 /**************** sprites ****************/
+.icon-soc_fb {
+  width: 6.9em;
+  height: 10.7em;
+  background-position: 0em 0em;
+  background-repeat: no-repeat;
+  background-image: url("../img/common/sprite.png");
+  background-size: 28.6em auto; }
+
+.icon-soc_ok {
+  width: 7.5em;
+  height: 10.7em;
+  background-position: -7.9em -11.7em;
+  background-repeat: no-repeat;
+  background-image: url("../img/common/sprite.png");
+  background-size: 28.6em auto; }
+
+.icon-soc_vk {
+  width: 12.2em;
+  height: 10.7em;
+  background-position: -16.4em -23.4em;
+  background-repeat: no-repeat;
+  background-image: url("../img/common/sprite.png");
+  background-size: 28.6em auto; }
+
 /* =====================================================================
 					        MAIN STYLE
 ======================================================================== */
@@ -652,26 +676,6 @@ a:hover {
   line-height: 1.4;
   margin-top: 1em;
   color: #000000; }
-
-.icon-base {
-  background-repeat: no-repeat;
-  background-image: url("../img/common/sprite.png");
-  background-size: 28.6em auto; }
-
-.icon-soc_fb {
-  width: 6.9em;
-  height: 10.7em;
-  background-position: 0em 0em; }
-
-.icon-soc_vk {
-  width: 12.2em;
-  height: 10.7em;
-  background-position: -16.4em -23.4em; }
-
-.icon-soc_ok {
-  width: 7.5em;
-  height: 10.7em;
-  background-position: -7.9em -11.7em; }
 
 /************************************************ HEADER / FOOTER *************************************************/
 /*************************************************** CONTENT *******************************************************/

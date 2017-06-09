@@ -1,3 +1,11 @@
 {{#items}}
 	${{name}}: {{px.x}}, {{px.y}}, {{px.offset_x}}, {{px.offset_y}}, {{px.width}}, {{px.height}}, {{px.total_width}}, {{px.total_height}}, '{{{escaped_image}}}';
+    .{{name}} {
+        width: spriteWidth(${{name}});
+        height: spriteHeight(${{name}});
+        background-position: spriteBgPosition(${{name}});
+        background-repeat: no-repeat;
+        background-image: url(spriteImage(${{name}}));
+        background-size: spriteBgSize(${{name}});
+    }
 {{/items}}

@@ -1,3 +1,27 @@
 	$icon-soc_fb: 0px, 0px, 0px, 0px, 69px, 107px, 286px, 341px, 'sprite.png';
+    .icon-soc_fb {
+        width: spriteWidth($icon-soc_fb);
+        height: spriteHeight($icon-soc_fb);
+        background-position: spriteBgPosition($icon-soc_fb);
+        background-repeat: no-repeat;
+        background-image: url(spriteImage($icon-soc_fb));
+        background-size: spriteBgSize($icon-soc_fb);
+    }
 	$icon-soc_ok: 79px, 117px, -79px, -117px, 75px, 107px, 286px, 341px, 'sprite.png';
+    .icon-soc_ok {
+        width: spriteWidth($icon-soc_ok);
+        height: spriteHeight($icon-soc_ok);
+        background-position: spriteBgPosition($icon-soc_ok);
+        background-repeat: no-repeat;
+        background-image: url(spriteImage($icon-soc_ok));
+        background-size: spriteBgSize($icon-soc_ok);
+    }
 	$icon-soc_vk: 164px, 234px, -164px, -234px, 122px, 107px, 286px, 341px, 'sprite.png';
+    .icon-soc_vk {
+        width: spriteWidth($icon-soc_vk);
+        height: spriteHeight($icon-soc_vk);
+        background-position: spriteBgPosition($icon-soc_vk);
+        background-repeat: no-repeat;
+        background-image: url(spriteImage($icon-soc_vk));
+        background-size: spriteBgSize($icon-soc_vk);
+    }
