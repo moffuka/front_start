@@ -301,31 +301,62 @@ function templatizedStringParser(myTemplate, myString) {
 
 
 
-/******************************************* ANGULAR LOAD ***********************************************/
 
-function compileAngularElement(elSelector) {
-    if (typeof elSelector !== 'undefined') {
-        var $div = $(elSelector);
-        if ($div.length > 0) {
-            var $target = $("[ng-app]");
-            angular.element($target).injector().invoke(['$compile', function ($compile) {
-                var $scope = angular.element($target).scope();
-                $compile($div)($scope);
-                $scope.$apply();
-            }]);
+
+
+
+/************************************** show/hide form errors **********************************************/
+
+function clearGenericFormErrors(fel){
+    fel.find('.js_field_error').parent().removeClass('invalid');
+    fel.find('.js_field_error').remove();
+    fel.find('.js_glob_error').hide().css('color', 'red').text('');
+}
+
+function showGenericFormErrors(fel, err){
+    fel.find('.js_field_error').html('').hide();
+
+    if (typeof err === 'object') {
+        var msg_global = '';
+
+        for (var i = 0; i < err.length; i++) {
+            var msg = '';
+            if (typeof err[i].message === 'string') {
+                msg = err[i].message;
+            }
+
+            var errel = fel.find('.js_' + err[i].field + '_error');
+            var inpel = fel.find('[name="' + err[i].field + '"]');
+
+            if (errel.length == 1) {
+                errel
+                    .parent().addClass('invalid')
+                    .find('.js_field_error').remove().end()
+                    .append('<div class="error-msg js_field_error" style="color: red;">' + msg + '</div>');
+            }
+            else if (inpel.length == 1) {
+                inpel
+                    .parent().addClass('invalid')
+                    .find('.js_field_error').remove().end()
+                    .append('<div class="error-msg js_field_error" style="color: red;">' + msg + '</div>');
+            }
+            else {
+                msg_global += msg + '<br>';
+            }
         }
+
+        if (msg_global !== '') {
+            fel.find('.js_glob_error').html(msg_global).show();
+        }
+    } else if (err) {
+        fel.find('.js_glob_error').text(err.details).show();
+    } else {
+        fel.find('.js_glob_error').text('ошибка').show();
     }
 }
 
-function getMainScope() {
-    return angular.element('[ng-app]').scope();
-}
 
-function setMainScope(elem, value) {
-    var $scope = getMainScope();
-    $scope[elem] = value;
-    $scope.$apply();
-}
+
 
 
 

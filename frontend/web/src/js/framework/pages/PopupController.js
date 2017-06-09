@@ -84,6 +84,8 @@ var PopupController = BasePagesController.extend({
     beforeShow: function() {
         app.bgImgOnLoad();
         app.bgOnResize();
+
+        $('body').removeClassRegExp('popup-').addClass('popup-' + router.get('now'));
     },
 
     showPage: function(callback) {

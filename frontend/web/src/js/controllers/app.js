@@ -1,7 +1,7 @@
 var app = new (BaseController.extend({
 
-    setParams: function() {
-
+    setParams: function () {
+        this.elem = 'body';
     },
 
     init: function(){
@@ -12,6 +12,7 @@ var app = new (BaseController.extend({
 
         $(document).on('click', '.js-popup_close', function(e){ that.popupHide(); });
         $(document).on('click', '.js-small_popup_close', function(e){ that.hideSmallPopup(this); });
+        $(document).on('click', '.js-msg_popup_close', function(e){ that.msgPopupCloseClick(this); });
 
         this.listenTo(router, 'change:now', this.pageChanged);
         this.listenTo(router, 'change:current_route', this.routeChanged);
@@ -76,23 +77,13 @@ var app = new (BaseController.extend({
         var window_height = $(window).height();
 
         if ((window_width > window_height) && (window_width > 400) && (window_width/window_height > 1.2)) {
-            if (isMobile && $('html').hasClass('html-portrait') && router.get('current_route').indexOf('rating/') > -1) {
-                setTimeout(function(){
-                    router.setPage('rating');
-                }, 200);
-            }
-
             $('html').removeClass('html-portrait').addClass('html-landscape');
+
             isLandscape = true;
             isPortrait = false;
         } else {
-            if (isMobile && $('html').hasClass('html-landscape') && router.get('current_route').indexOf('rating') > -1) {
-                setTimeout(function(){
-                    router.setPage('rating/players');
-                }, 200);
-            }
-
             $('html').removeClass('html-landscape').addClass('html-portrait');
+
             isPortrait = true;
             isLandscape = false;
         }
@@ -117,75 +108,134 @@ var app = new (BaseController.extend({
                 $('body').css({'font-size': Math.min(7, Math.min(6.5 * window_width / 960, 6.5 * window_height / 1440))});
             }
         } else {
-            $('html').css({'font-size': (window_height / 100)});
-            $('body').css({'font-size': Math.min(10, Math.min(10 * window_width / 1900, 10 * window_height / 1200))});
+            $('html').css({'font-size': (Math.round(Math.min(10, Math.min(10 * window_width / 1900, 10 * window_height / 1200)) * 10) / 10)});
         }
     },
 
-    animate: function(selector, css, time, easing, delay, callback) {
+    animate: function(selector, css, time, easing, delay, callback){
+        callback = callback || function(){};
+
         if (ieNum > 9) {
-            var _css = css;
-            _css['transition'] = 'all ' + time + 'ms ' + ((easing == '') ? 'ease' : easing);
+            if (time <= 0) {
+                $(selector).css(css);
+                callback();
+            } else {
+                var _css = css;
+                _css['transition'] = 'all ' + time + 'ms ' + ((easing == '') ? 'ease' : easing);
 
-            setTimeout(function () {
-                $(selector).css(_css);
+                setTimeout(function(){
+                    $(selector).css(_css);
 
-                setTimeout(function () {
-                    $(selector).css({ 'transition' : '' });
-                    if (typeof callback === 'function') { callback(); }
-                }, time + 50);
-            }, delay + 50);
+                    setTimeout(function(){
+                        $(selector).css({'transition': ''});
+                        callback();
+                    }, time + 50);
+                }, delay + 50);
+            }
         } else {
             setTimeout(function(){
                 $(selector).css(css);
-                if (typeof callback === 'function') { callback(); }
+                callback();
             }, 200);
         }
     },
 
-    fadeOut: function(selector, time, options, callback) {
+    fadeOut: function(selector, time, options, callback){
+        callback = callback || function(){ };
         options = $.extend({
-            easing : 'ease',
+            easing: 'ease',
             delay: 0,
-            change_visibility : false
+            change_visibility: false,
         }, options);
 
         if ($(selector).is(':visible') && $(selector).css('visibility') !== 'hidden' && parseFloat($(selector).css('opacity')) > 0) {
-            this.animate(selector, {'opacity': 0}, time, options.easing, options.delay, function () {
+            this.animate(selector, {'opacity': 0}, time, options.easing, options.delay, function(){
                 if (!options.change_visibility) {
                     $(selector).css({'display': 'none', 'opacity': ''});
                 } else {
                     $(selector).css({'visibility': 'hidden', 'opacity': ''});
                 }
 
-                if (typeof callback === 'function') { callback(); }
+                callback();
             });
         } else {
-            if (typeof callback === 'function') { callback(); }
+            callback();
         }
     },
 
-    fadeIn: function(selector, time, options, callback) {
+    fadeIn: function(selector, time, options, callback){
+        callback = callback || function(){ };
         options = $.extend({
-            easing : 'ease',
+            easing: 'ease',
             delay: 0,
-            change_visibility : false
+            change_visibility: false,
         }, options);
 
         if ($(selector).is(':visible') && $(selector).css('visibility') !== 'hidden' && parseFloat($(selector).css('opacity')) > 0) {
-            if (typeof callback === 'function') { callback(); }
+            callback();
         } else {
             $(selector).css({'display': '', 'visibility': '', 'opacity': 0});
 
             this.animate(selector, {'opacity': 1}, time, options.easing, options.delay, function () {
                 $(selector).css({'opacity': ''});
 
-                if (typeof callback === 'function') { callback(); }
+                callback();
             });
         }
     },
 
 
+
+
+
+    /***************************************************** SMALL POPUP ******************************************************************/
+
+    msgDeferred: null,
+
+    showMessage: function (title, text) {
+        this.msgDeferred = $.Deferred();
+
+        $('.b-message_popup_title').html(title);
+        $('.b-message_popup_text').html(text);
+
+        app.fadeIn('.b-message_popup', 300, {});
+
+        return this.msgDeferred.promise();
+    },
+
+    msgPopupCloseClick: function () {
+        var that = this;
+
+        app.fadeOut('.b-message_popup', 300, {}, function () {
+            if (that.msgDeferred != null) {
+                that.msgDeferred.resolve();
+            }
+        });
+    },
+
+    popupHide: function(){
+        var visible_pages = $('.b-page[data-page-type="page"]').filterVisible();
+
+        if (visible_pages.length > 0) {
+            var route = $(visible_pages).eq(0).attr('data-last-route') || '';
+            if (route == '') {
+                route = $(visible_pages).eq(0).attr('data-route') || '';
+            }
+            router.setPage(route);
+        }
+    },
+
+    hideSmallPopup: function(_elem, _cb) {
+        var elem = ($(_elem).length > 0) ? $(_elem).parents('.b-small_popup') : $('.b-small_popup:visible');
+
+        if (elem.length > 0) {
+            app.fadeOut(elem, 300, {}, function () {
+                if (typeof _cb === 'function') { _cb(); }
+            });
+        } else {
+            if (typeof _cb === 'function') { _cb(); }
+        }
+    },
 
 
 
@@ -224,39 +274,27 @@ var app = new (BaseController.extend({
         }, 0);
     },
 
-    pageChanged: function() {
+    pageChanged: function(){
         var that = this;
         var now = router.get('now');
         var params = router.get('params');
-        var page = $('.b-page[data-page="'+now+'"]');
-
-        $('body').removeClassRegExp('page-').addClass('page-'+now);
+        var page = $('.b-page[data-page="' + now + '"]');
     },
 
-    routeChanged: function() {
+    routeChanged: function(){
         var that = this;
         var now = router.get('now');
         var current_route = router.get('current_route');
         var params = router.get('params');
-        var page = $('.b-page[data-page="'+now+'"]');
+        var page = $('.b-page[data-page="' + now + '"]');
+
+        $('body').removeClassRegExp('route-').addClass('route-' + (current_route.replace('/', '_')));
 
         // analyticks
         if (typeof ga !== 'undefined') {
             ga('send', 'pageview', {
                 'page': location.href
             });
-        }
-    },
-
-    popupHide: function() {
-        var visible_pages = $('.b-page[data-page-type="page"]').filterVisible();
-
-        if (visible_pages.length > 0) {
-            var route = $(visible_pages).eq(0).attr('data-last-route') || '';
-            if (route == '') {
-                route = $(visible_pages).eq(0).attr('data-route') || '';
-            }
-            router.setPage(route);
         }
     },
 
@@ -286,32 +324,6 @@ var app = new (BaseController.extend({
             case 39: // right
 
             break;
-        }
-    },
-
-    showMessage: function(msg, _cb) {
-        if (!_.isNull(msg) && (typeof msg !== 'undefined') && msg !== '') {
-            $('.b-message_popup .b-message_popup_content_in').html(msg);
-        }
-
-        if ($('.b-message_popup').is(':hidden')) {
-            app.fadeIn('.b-message_popup', 300, {}, function(){
-                if (typeof _cb === 'function') { _cb(); }
-            });
-        } else {
-            if (typeof _cb === 'function') { _cb(); }
-        }
-    },
-
-    hideSmallPopup: function(_elem, _cb) {
-        var elem = ($(_elem).length > 0) ? $(_elem).parents('.b-small_popup') : $('.b-small_popup:visible');
-
-        if (elem.length > 0) {
-            app.fadeOut(elem, 300, {}, function () {
-                if (typeof _cb === 'function') { _cb(); }
-            });
-        } else {
-            if (typeof _cb === 'function') { _cb(); }
         }
     },
 

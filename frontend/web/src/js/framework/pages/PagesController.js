@@ -57,6 +57,8 @@ var PagesController = BasePagesController.extend({
     beforeShow: function() {
         app.bgImgOnLoad();
         app.bgOnResize();
+
+        $('body').removeClassRegExp('page-').addClass('page-' + router.get('now'));
     },
 
     showPage: function(callback) {
